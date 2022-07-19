@@ -1,0 +1,27 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-center align-items-start w-100">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body">
+                <h4 class="card-title">Update {{form.skill_name.name}}</h4>
+                <p class="card-description">
+                    Your skills data will be updated to new entries that you will add here
+                </p>
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Skill Name</label>
+                        <input type="text" value="{{form.skill_name.value}}" name="{{form.skill_name.name}}" class="form-control" placeholder="odoo...">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Skill Count</label>
+                        <input type="text" value="{{form.skill_count.value}}" name="{{form.skill_count.name}}" class="form-control" placeholder="matric...">
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

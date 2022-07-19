@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static " css_base/bootstrap.min.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static " css_base/index.css" %}" />
+    <meta name="google-site-verification" content="GPA2uLhZ2fmjqiT9RI_Ac-FfeZph4yob6olul8iz3zw" />
+    <meta name="title" content="Meer Balaj" />
+    <meta name="description" content="A proactive, adaptable and  professional ERP Consultant & having exposure of Odoo ERP, Trained end users for modules i.e. Retail, Budgeting, Fixed Assets, Production Control, Account Receivable, Account Payable, Inventory, General Ledger and having the ability to understand the business process." />
+    <meta name="keywords" content="Meer Balaj,Odoo,ERP,Functional Consultant,ERP Consultant,meer balaj,meer,balaj,EUSOL,eusol,Eusol" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="English" />
+    <meta name="author" content="Meer Balaj" />
+    <title>{{request.user}}</title>
+</head>
+
+<body>
+    <nav class="navbar-expand-lg navbar navbar-dark bg-dark" style="background-color: #1a253f !important;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">{{request.user}} CV</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 d-flex justify-content-between align-items-center" style="width:100%;">
+                <div class="d-flex">
+                </div>
+                <div class="d-flex">
+                    <li class="nav-item">
+                        <a href="/accounts/login/">
+                            <span class="btn btn-sm btn-success ">{{request.user}} | Login</span>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center">
+        <div class="jumbotron custom_login_form">
+            {% block title %}
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MTCW9FHLTH"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-MTCW9FHLTH');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+web: python manage.py collectstatic --no-input; gunicorn  meer_balaj_cv.wsgi --log-file - --log-level debug

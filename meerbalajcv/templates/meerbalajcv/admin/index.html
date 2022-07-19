@@ -1,0 +1,384 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{title}} CV</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.3/css/unicons.css">
+    <link rel="stylesheet" href="{% static "admin/vendors/feather/feather.css" %}" />
+    <link rel="stylesheet" href="{% static "admin/vendors/mdi/css/materialdesignicons.min.css" %}" />
+    <link rel="stylesheet" href="{% static "admin/css/style.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css_base/nprogress.css" %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.2/css/font-awesome.min.css" integrity="sha512-YgECeaX64EiXmgxPQZ88zsywLJBLNfuY1IpQiR6OXyLpEgLPXZq2JnfnTaHaAZ+1ADF3PzI2I8ma/ixR1jJUMg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    {% for profile in profile_data %}
+    <link rel="shortcut icon" href="{{profile.profile_img.url}}" />
+    {% endfor %}
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a href="/">
+                    <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon">
+                        <i class="icon-globe"></i>
+                    </button>
+                </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+                <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item custom_nav">
+                        <div class="col-sm-12">
+                            <h5 class="custom_h5 font-weight-bold text-dark">Welcome back {{title}}!</h5>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown d-flex mr-4 ">
+                        <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+                            <i class="icon-cog"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
+                            <a class="dropdown-item preview-item" href="/accounts/logout">
+                                <i class="icon-inbox"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial <-->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <div class="user-profile">
+                    {% for profile in profile_data %}
+                    <div class="user-image">
+                        <img src="{{profile.profile_img.url}}" alt="{{title}} Image">
+                    </div>
+                    <div class="user-name">
+                        {{profile.name}}
+                    </div>
+                    <div class="user-designation">
+                        {{profile.multi_headline_1}}
+                    </div>
+                </div>
+                {% endfor %}
+                <ul class="nav">
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="/admin/">
+                            <i class="icon-head menu-icon"></i>
+                            <span class="menu-title">Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                            <i class="icon-briefcase menu-icon"></i>
+                            <span class="menu-title">Education & Skills</span>
+                            <i class="fa fa-angle-down custom_icon" aria-hidden="true"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/add_education/"> Education </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/add_experience/"> Experience </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/add_skill/"> Skills </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="/add_completed_projects/">
+                            <i class="icon-command menu-icon"></i>
+                            <span class="menu-title">Completed Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="/add_testimonials/">
+                            <i class="icon-speech-bubble menu-icon"></i>
+                            <span class="menu-title">Testimonials</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" data-toggle="collapse" href="#port" aria-expanded="false" aria-controls="port">
+                            <i class="icon-target menu-icon"></i>
+                            <span class="menu-title">My Works</span>
+                            <i class="fa fa-angle-down custom_icon" aria-hidden="true"></i>
+                        </a>
+                        <div class="collapse" id="port">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/add_categories/"> Categories</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/add_portfolio_images/"> Images </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="/meta_images/">
+                            <i class="icon-star menu-icon"></i>
+                            <span class="menu-title">Meta Images</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="/contact_entries/">
+                            <i class="icon-archive menu-icon"></i>
+                            <span class="menu-title">Contact Entries</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    {% if messages %}
+                    <div class="row justify-content-center align-items-start w-100">
+                        
+                    <div class="container">
+                        {% for msg in messages %}
+                        <div {% if msg.tags %} class="mb-5 alert alert-{{msg.tags}} alert-dismissible fade show "{% endif %} class="alert alert-">
+                            <strong>
+                                {{msg}}
+                            </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    </div>
+                    
+                    {% endif %}
+                    {% block content %}
+                    <div class="row">
+                        <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="card" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+                                <div class="card-body pt-4 pb-4 pl-4 pr-4">
+                                    <div class="d-flex justify-content-between w-100 align-items-center">
+                                        <h1 class="custom_card_title card-title mb-5">Profile</h1>
+                                        {% if not profile_data %}
+                                        <a href="{% url 'Upload_profile' %}">
+                                            <button type="button" class="mb-5 btn btn-info font-weight-bold">+ Add Profile</button>
+                                        </a>
+                                        {% endif %}
+                                        {% if profile_data %}
+                                        {% for prf in profile_data %}
+                                        <a href="{% url 'Edit_profile' prf.id %}">
+                                            <button type="button" class="mb-5 btn btn-info font-weight-bold">+ Edit</button>
+                                            {% endfor %}
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                    {% if not profile_data %}
+                                    <h1 class="custom_card_title text-center card-title mb-4">No Profile Found!</h1>
+                                    {% endif %}
+                                    {% if profile_data %}
+                                    {% for prf in profile_data %}
+                                    <div class="custom_cards_profiles col-md-12 p-0">
+                                        <div class="p-0 d-flex justify-content-between align-items-start col-md-12 custom_cards card">
+                                            <div class="col-sm-4 d-flex justify-content-center align-items-center flex-column">
+                                                <div class="text-center">
+                                                    <img width="185" height="190" style="border-radius: 50%; object-fit: cover;"  src="{{prf.profile_img.url}}" alt="{{title}} Image">
+                                                </div>
+                                                <div class="text-center mt-3">
+                                                    <h5 class="mb-2">{{prf.name}}</h5>
+                                                    <div class="items_titiles">
+                                                        <div class="pb-1">
+                                                            <span>{{prf.multi_headline_3}}</span>
+                                                        </div>
+                                                        <div class="pb-1">
+                                                            <span>{{prf.multi_headline_1}}</span>
+                                                        </div>
+                                                        <div class="pb-1">
+                                                            <span>{{prf.multi_headline_2}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="px-4 mt-1">
+                                                    </div>
+                                                    <div class=" d-flex justify-content-center align-items-center flex-column template-demo">
+                                                        <a target="_blank" href="{{prf.facebook}}">
+                                                            <button type="button" class="btn mb-2 mt-2 btn-social-icon-text btn-facebook"><i class="mdi mdi-facebook"></i>Facebook</button>
+                                                        </a>
+                                                        <a target="_blank" href="{{prf.website}}">
+                                                            <button type="button" class="btn mb-2 btn-social-icon-text btn-dribbble"><i class="mdi mdi-dribbble"></i>Website</button>
+                                                        </a>
+                                                        <a target="_blank" href="{{prf.linkedin}}">
+                                                            <button type="button" class="btn mb-2 btn-social-icon-text btn-linkedin"><i class="mdi mdi-linkedin"></i>Linkedin</button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pl-3 pr-3 custom_info col-sm-4">
+                                                <div class="card mt-3">
+                                                    <h4 class="mb-3 text-primary text-success">Information
+                                                        <span class="badge badge-secondary">New</span></h4>
+                                                    <ul class=" w-100 list-group">
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 mb-2 w-100 list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <div class="d-flex justify-content-between align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/phone-call.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-3">
+                                                                    Phone
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted">
+                                                                {{prf.phone}}
+                                                            </span>
+                                                        </li>
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 mb-2 w-100 list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <div class="d-flex justify-content-between align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/mail.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-3">
+                                                                    Email
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted">
+                                                                {{prf.email}}
+                                                            </span>
+                                                        </li>
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 mb-2 w-100 list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <div class="d-flex justify-content-between align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/globe.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-3">
+                                                                    Spoken
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted">
+                                                                {{prf.spoken}}
+                                                            </span>
+                                                        </li>
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 mb-2 w-100 list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <div class="d-flex justify-content-between align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/flag.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-3">
+                                                                    Nationality
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted">
+                                                                {{prf.nationality}}
+                                                            </span>
+                                                        </li>
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 w-100 list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <div class="d-flex justify-content-between align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/map-pin.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-3">
+                                                                    Location
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted">
+                                                                {{prf.location}}
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="pl-4 pr-0 custom_info col-sm-4">
+                                                <div class="card mt-3">
+                                                    <h4 class="mb-3 text-primary text-info">Others</h4>
+                                                    <ul class=" w-100 list-group">
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 mb-2 w-100 list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <div class="d-flex justify-content-between align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/calendar.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-3">
+                                                                    Date Of Birth
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted">
+                                                                {{prf.DOB}}
+                                                            </span>
+                                                        </li>
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 mb-2 w-100 list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                                            <div class="d-flex justify-content-between align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/gift.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-3">
+                                                                    Intersets
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted">
+                                                                {{prf.interests}}
+                                                            </span>
+                                                        </li>
+                                                        <li style="box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 60%);" class="mt-2 mb-2 w-100 list-group-item d-flex justify-content-center align-items-center flex-wrap flex-column">
+                                                            <div class="d-flex justify-content-center align-items-center w-40">
+                                                                <img src="/static/admin/images/faces/sunrise.svg" alt="{{title}} Image" />
+                                                                <h6 class="m-0 pl-1">
+                                                                    Bio
+                                                                </h6>
+                                                            </div>
+                                                            <span class="text-muted text-center mt-2">
+                                                                {{prf.bio}}
+                                                            </span>
+                                                        </li>
+                                                        {% if prf.upload_cv %}
+                                                        <a href="/media/{{prf.upload_cv}}" download="">
+                                                            <button type="button" class="w-100 btn btn-dark btn-icon-text">
+                                                                Download Attach CV
+                                                                <i class="mdi mdi-file-check btn-icon-append"></i>
+                                                            </button>
+                                                        </a>
+                                                        {% endif %}
+                                                        {% if not prf.upload_cv %}
+                                                        <a href="">
+                                                            <button style="cursor: not-allowed; "type="button" class="w-100 btn btn-dark btn-icon-text">
+                                                                No Attach CV
+                                                                <i class="mdi mdi-file-check btn-icon-append"></i>
+                                                            </button>
+                                                        </a>
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock content %}
+                </div>
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center align-items-center">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © eusol.net 2022</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+        <script type=" text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src=" {% static "admin/vendors/base/vendor.bundle.base.js" %} "></script>
+<script src=" {% static "admin/js/off-canvas.js" %} "></script>
+<script src=" {% static "admin/js/cal.js" %} "></script>
+<script src=" {% static "admin/js/template.js" %} "></script>
+<script src=" {% static "admin/js/nprogress.js" %}"></script>
+        <script src="{% static "admin/js/file-upload.js" %} "></script>
+<script>
+$('body').show();
+NProgress.start();
+// NProgress.done();
+setTimeout(function() {
+    NProgress.done();
+    $('.fade').removeClass('out');
+}, 500);
+
+$(" a").click(function() { NProgress.set(0.4); }); function remove(el) { var element=document.getElementById("custom_alert"); element.remove(); } var $jq=jQuery.noConflict(); $jq(document).ready(function() { $('.slider').slick({ dots: false, infinite: true, speed: 300, autoplay: true, autoplaySpeed: 6000, slidesToShow: 1, fade: false, cssEase: 'linear' , prevArrow: '<div style="cursor:pointer;" class="slick-prev"><i class="fa fa-chevron-left"></i></div>' , nextArrow: '<div style="cursor:pointer;" class="slick-next"><i class="fa fa-chevron-right"></i></div>' }); }); // Will only work if string in href matches with location // Will also work for relative and absolute hrefs 
+$(document).ready(function() { var url=window.location; $('ul li a[href="' + url + '" ]').parent().addClass('active'); $('ul li a').filter(function() { return this.href==url; }).parent().addClass('active').parent().parent().addClass('active'); }); </script> </body> </html>

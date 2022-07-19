@@ -1,0 +1,402 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load pwa %}
+    {% progressive_web_app_meta %}
+    <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <meta name="google-site-verification" content="GPA2uLhZ2fmjqiT9RI_Ac-FfeZph4yob6olul8iz3zw" />
+    <meta name="title" content="Meer Balaj" />
+    <meta name="description" content="A proactive, adaptable and  professional ERP Consultant & having exposure of Odoo ERP, Trained end users for modules i.e. Retail, Budgeting, Fixed Assets, Production Control, Account Receivable, Account Payable, Inventory, General Ledger and having the ability to understand the business process." />
+    <meta name="keywords" content="Meer Balaj,Odoo,ERP,Functional Consultant,ERP Consultant,meer balaj,meer,balaj,EUSOL,eusol,Eusol" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="English" />
+    <meta name="author" content="Meer Balaj" />
+
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.3/css/unicons.css">
+    <link rel="stylesheet" href="{% static "home/plugins/headline/headline.css" %}" />
+    <link rel="stylesheet" href="{% static "home/plugins/magnify.css" %}" />
+    <link rel="shorcut icon" href="{% static "home/images/favicon.ico" %}" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="{% static "home/css/style.css" %}" />
+    <title>{{title}} CV</title>
+</head>
+
+<body>
+    <div class="preloader js-preloader flex-center">
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+    <nav>
+        <div class="container inner">
+            <div class="logo">
+                <i class="uil uil-cell"></i>
+                {{title}} CV
+            </div>
+            <div>
+                <button id="print_btn_custom" type="submit">
+                    <i class="uil uil-print"></i>
+                    Print
+                </button>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+    <div class="container mt-5">
+        {% for msg in messages %}
+        <div {% if msg.tags %} class="alert alert-{{msg.tags}} alert-dismissible fade show " {% endif %} class="alert alert-">
+            <strong>
+                {{msg}}
+            </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% for profile in profile_data %}
+    <main class="container">
+        <section class="profile" id="profile__ripple">
+            <div class="left">
+                <div class="avatar__block">
+                    <img src="{{profile.profile_img.url}}" alt="{{title}} Image">
+                    <a href="#contact_custom">
+                        <span>
+                            <i class="uil uil-comment-dots"></i>
+                        </span>
+                    </a>
+                </div>
+                <div>
+                    <h2>{{title}}</h2>
+                    <p class="cd-headline loading-bar">
+                        <span class="cd-words-wrapper">
+                            <b class="is-visible">{{profile.multi_headline_1}}</b>
+                            <b>{{profile.multi_headline_2}}</b>
+                            <b>{{profile.multi_headline_3}}</b>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="right">
+                <ul class="contact">
+                    <li>
+                        <i class="uil uil-phone-volume"></i>
+                        <strong>Phone : </strong> {{profile.phone}}
+                    </li>
+                    <li>
+                        <i class="uil uil-envelope"></i>
+                        <strong>Email : </strong> {{profile.email}}
+                    </li>
+                </ul>
+                <ul class="socials">
+                    <li>
+                        <a href="{{profile.facebook}}" target="_blank">
+                            <i class="uil uil-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{profile.website}}" target="_blank">
+                            <i class="uil uil-dribbble"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{profile.linkedin}}" target="_blank">
+                            <i class="uil uil-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="about">
+            <h1 class="section__heading">About Me !</h1>
+            <div class="content">
+                <div class="left">
+                    <h2>I'm {{title}} </h2>
+                    <p> {{profile.bio}} 🔥</p>
+                    {% if profile.upload_cv %}
+                    <a href="/media/{{profile.upload_cv}}" download="">
+                        <button>
+                            Download CV
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% if not profile.upload_cv %}
+                    <button style="cursor: not-allowed;">
+                        Download CV
+                    </button>
+                    {% endif %}
+                </div>
+                <div class="right">
+                    <p>
+                        <span>Name</span>
+                        <span>{{profile.name}}</span>
+                    </p>
+                    <p>
+                        <span>Date of birth</span>
+                        <span>{{profile.DOB}}</span>
+                    </p>
+                    <p>
+                        <span>Spoken Langages</span>
+                        <span>{{profile.spoken}}</span>
+                    </p>
+                    <p>
+                        <span>Nationality</span>
+                        <span>{{profile.nationality}}</span>
+                    </p>
+                    <p>
+                        <span>Interest</span>
+                        <span>{{profile.interests}}</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="skills">
+            <h1 class="section__heading">Education & Skills</h1>
+            <div class="content">
+                <div class="left">
+                    <div class="inner__left">
+                        <div class="heading">
+                            <i class="uil uil-graduation-cap"></i>
+                            <h5>Education</h5>
+                        </div>
+                        <div class="timeline__wrapper">
+                            {% for education in education_data %}
+                            <div class="item">
+                                <p>{{education.From}} - {{education.To}}</p>
+                                <p class="center">{{education.learning_place}}</p>
+                                <p>{{education.degree}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="inner__right">
+                        <div class="heading">
+                            <i class="uil uil-suitcase-alt"></i>
+                            <h5>Experience</h5>
+                        </div>
+                        <div class="timeline__wrapper">
+                            {% for experience in experience_data %}
+                            <div class="item">
+                                <p>{{experience.From}} - {{experience.To}}</p>
+                                <p class="center">{{experience.job_title}}</p>
+                                <p>{{experience.company}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="right" style="width:95%;">
+                    <div class="skills__wrapper">
+                        {% for skill in skill_data %}
+                        <div class="skill-box">
+                            <h4>{{skill.skill_name}}</h4>
+                            <!-- <div class="progress__wrap"> -->
+                            <!--  {% if skill.skill_count %}
+                                <span data-percent="{{skill.skill_count}}" class="progress__bar"> -->
+                            <div class="progress" style="height:6px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{skill.skill_count}}%" aria-valuenow="{{skill.skill_count}}%" aria-valuemin="0" aria-valuemax="100">
+                                    <!-- {% endif %} -->
+                                    <!-- </span> -->
+                                    <!-- </div> -->
+                                </div>
+                                <span class="tooltip" style="left:{{skill.skill_count}}%">{{skill.skill_count}}%</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="counter__section">
+            <div>
+                <div>
+                    <i style="color: {{bar_Image_data_dict.projects_color}}" class="uil uil-{{bar_Image_data_dict.projects_icon}}"></i>
+                </div>
+                <div>
+                    <h3><span class="counter" data-count="{{bar_Image_data_dict.count_projects}}">{{bar_Image_data_dict.count_projects}}</span>+</h3>
+                    <h5>{{bar_Image_data_dict.projects}}</h5>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <i style="color: {{bar_Image_data_dict.clients_color}}" class="uil uil-{{bar_Image_data_dict.clients_icon}}"></i>
+                </div>
+                <div>
+                    <h3><span class="counter" data-count="{{bar_Image_data_dict.count_clients}}">{{bar_Image_data_dict.count_clients}}</span>+</h3>
+                    <h5>{{bar_Image_data_dict.clients}}</h5>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <i style="color: {{bar_Image_data_dict.awards_color}}" class="uil uil-{{bar_Image_data_dict.awards_icon}}"></i>
+                </div>
+                <div>
+                    <h3><span class="counter" data-count="{{bar_Image_data_dict.award_count}}">{{bar_Image_data_dict.award_count}}</span>+</h3>
+                    <h5>{{bar_Image_data_dict.awards}}</h5>
+                </div>
+            </div>
+        </section>
+        <section class="work">
+            <h1 class="section__heading">My Works & Review</h1>
+            <div class="wrapper">
+                <div class="slider__wrapper">
+                    <div class="icon__wrap"><i class="uil uil-feedback"></i></div>
+                    <div class="slider">
+                        {% for testimonial in testimonial_data %}
+                        <div class=" slide">
+                            <p>{{testimonial.client_feedback}}</p>
+                            <div>
+                                <img src="{{testimonial.client_img.url}}" alt="{{title}} Image">
+                            </div>
+                            <h2>{{testimonial.client_name}}</h2>
+                            <h6>{{testimonial.client_job_title}}</h6>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class=" portfolio">
+                    <div class="tabs">
+                        <ul>
+                            <li><a class="active" href="#" data-filter="*">All</a></li>
+                            {% for cat in categorie_data %}
+                            <li>
+                                <a href="#" data-filter=".{{cat.name_category}}">{{cat.name_category}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="portfolio__wrapper">
+                        {% for portfolio in portfolio_Image_data %}
+                        <div class="item {{portfolio.category}}">
+                            <a class="magnify" href="{{portfolio.item_img.url}}" title="{{portfolio.name_project}}">
+                                <img src="{{portfolio.item_img.url}}" alt="{{title}} Image">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class=" partners">
+            <div class="brands__wrapper">
+                {% for line_bar_imgs in line_bar_imgs_data %}
+                <img src="{{line_bar_imgs.bar_img.url}}" alt="{{title}} {{name_img}}">
+                {% endfor %}
+            </div>
+        </section>
+        <section class=" contact" id="contact_custom">
+            <h1 class="section__heading">Contact Me</h1>
+            <div class="wrapper">
+                <div class="left">
+                    <div>
+                        <div><i class="uil uil-phone-volume"></i></div>
+                        <div>
+                            <h4>Free Call To Me:</h4>
+                            <span>{{profile.phone}}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div><i class="uil uil-envelope"></i></div>
+                        <div>
+                            <h4>Mail Me:</h4>
+                            <span>{{profile.email}}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div><i class="uil uil-map-marker"></i></div>
+                        <div>
+                            <h4>Find Me:</h4>
+                            <span>{{profile.location}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <form method="POST" action="{% url 'contact_us_send' %}" enctype="multipart/form-data">
+                        <div class="form__group">
+                            <div>
+                                <label for="">Name</label>
+                                <input type="text" name="name_form" required="">
+                            </div>
+                            <div>
+                                <label for="">Email</label>
+                                <input type="email" name="email_from" required="">
+                            </div>
+                        </div>
+                        <div class="form__group textarea__wrapper">
+                            <div>
+                                <label for="">Message</label>
+                                <textarea required="" name="from_message" cols="30" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit">Submit Now</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endfor %}
+    {% if not profile_data %}
+    <main class="container">
+        <section class="profile" id="profile__ripple">
+            <h1>Please Add Some Data From Dashboard!</h1>
+            <p class="cd-headline loading-bar">
+                <span class="cd-words-wrapper">
+                </span>
+            </p>
+            </div>
+            </div>
+        </section>
+    </main>
+    {% endif %}
+    <footer class="container">
+        <span>© 2022. All rights reserved</span>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{% static "home/js/pre.js" %} "></script>
+
+    <script>
+    $('.js-preloader').preloadinator({
+        minTime: 2000
+    });
+    </script>
+
+
+    <script src=" {% static "home/plugins/headline/headline.js" %} "></script>
+    <script src=" {% static "home/plugins/ripples.js" %} "></script>
+    <script src=" {% static "home/plugins/isotope.js" %} "></script>
+    <script src=" {% static "home/plugins/magnify.js" %} "></script>
+    <script type=" text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{% static "home/js/app.js" %} "></script>
+     <script src=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MTCW9FHLTH"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-MTCW9FHLTH');
+    </script>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-center align-items-start w-100">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body">
+                <h4 class="card-title">Update Testimonial</h4>
+                <p class="card-description">
+                    Testimonials will show in left side of my works section
+                </p>
+                <form method="POST" id="test_form" action="" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Client Name</label>
+                        <input value="{{form.client_name.value}}" type="text"  name="{{form.client_name.name}}" class="form-control" placeholder="Jhon..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Client Job Title</label>
+                        <input value="{{form.client_job_title.value}}" type="text"  name="{{form.client_job_title.name}}" class="form-control" placeholder="CEO..">
+                    </div>
+                    <div class="form-group">
+                        <label>Update Project Image</label>
+                        <input value="{{form.client_img.value}}" type="file" class="file-upload-default" name="{{form.client_img.name}}" accept="image/*"  id="{{form.id}}">
+                        <div class="input-group col-xs-12">
+                            <input value="{{form.client_img.value}}" type="text" class="form-control file-upload-info" disabled="" placeholder="Image..">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Update Image</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">FeedBack</label>
+                        <textarea rows="9" cols="70" form="test_form" type="text"  name="{{form.client_feedback.name}}" class="form-control" placeholder="Good.." />{{form.client_feedback.value}} </textarea>
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

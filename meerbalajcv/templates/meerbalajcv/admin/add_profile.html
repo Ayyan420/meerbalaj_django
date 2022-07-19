@@ -1,0 +1,99 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-center align-items-start w-100">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body">
+                <h4 class="card-title">Add Profile</h4>
+                <p class="card-description">
+                    Your profile will be Addd to new entries that you will add here
+                </p>
+                <form method="POST" action="" id="test_form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Attach Profile Picture</label>
+                        <input required="" type="file" class="file-upload-default" name="{{form.profile_img.name}}" accept="image/*" id="id_profile_img">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled="" placeholder="Image..">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Add Profile Image</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Name</label>
+                        <input required="" type="text" name="{{form.name.name}}" class="form-control" placeholder="Jhon..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Headline 1</label>
+                        <input required="" type="text" name="{{form.multi_headline_1.name}}" class="form-control" placeholder="Oracle Developer..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Headline 1</label>
+                        <input required="" type="text" name="{{form.multi_headline_2.name}}" class="form-control" placeholder="Odoo Developer..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Headline 1</label>
+                        <input required="" type="text" name="{{form.multi_headline_3.name}}" class="form-control" placeholder="Full Stack Developer..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Phone</label>
+                        <input required="" type="text" name="{{form.phone.name}}" class="form-control" placeholder="0900798601">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Email</label>
+                        <input required="" type="email" name="{{form.email.name}}" class="form-control" placeholder="admin@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Facebook</label>
+                        <input required="" type="text" name="{{form.facebook.name}}" class="form-control" placeholder="https://facebook...">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Website</label>
+                        <input required="" type="text" name="{{form.website.name}}" class="form-control" placeholder="https://www..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Linkedin</label>
+                        <input required="" type="text" name="{{form.linkedin.name}}" class="form-control" placeholder="https://lindedin....">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Spoken</label>
+                        <input required="" type="text" name="{{form.spoken.name}}" class="form-control" placeholder="english,hindi...">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Nationality</label>
+                        <input required="" type="text" name="{{form.nationality.name}}" class="form-control" placeholder="Us,Pak...">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Location</label>
+                        <input required="" type="text" name="{{form.location.name}}" class="form-control" placeholder="Lahore,Karachi...">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Interests</label>
+                        <input required="" type="text" name="{{form.interests.name}}" class="form-control" placeholder="Movies..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Bio</label>
+                        <textarea rows="9" cols="70" form="test_form" type="text" name="{{form.bio.name}}" class="form-control" placeholder="I'm a very...." /></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Date Of Birth</label>
+                        <input required="" value="" required="" type="date" name="{{form.DOB.name}}" class="form-control" placeholder="2022-12-12">
+                    </div>
+                    <div class="form-group">
+                        <label>Attach Profile CV</label>
+                        <input type="file" class="file-upload-default" name="upload_cv" accept="image/*" id="id_upload_cv">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled="" placeholder="CSv or PDF CV..">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Attach CV</button>
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

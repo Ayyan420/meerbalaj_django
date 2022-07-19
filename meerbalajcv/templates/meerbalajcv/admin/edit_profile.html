@@ -1,0 +1,105 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-center align-items-start w-100">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body">
+                <h4 class="card-title">Update Profile</h4>
+                <p class="card-description">
+                    Your profile will be updated to new entries that you will add here
+                </p>
+                <form method="POST" action="" id="test_form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Attach Profile Picture</label>
+                        <input type="file" value="{{form.profile_img.value}}" class="file-upload-default" name="{{form.profile_img.name}}" accept="image/*" id="id_profile_img">
+                        <div class="input-group col-xs-12">
+                            <input type="text" value="{{form.profile_img.value}}" class="form-control file-upload-info" disabled="" placeholder="Image..">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Update Profile Image</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Name</label>
+                        <input value="{{form.name.value}}" type="text" name="{{form.name.name}}" class="form-control" placeholder="odoo..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Headline 1</label>
+                        <input value="{{form.multi_headline_1.value}}" type="text" name="{{form.multi_headline_1.name}}" class="form-control" placeholder="12..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Headline 1</label>
+                        <input value="{{form.multi_headline_2.value}}" type="text" name="{{form.multi_headline_2.name}}" class="form-control" placeholder="12..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Headline 1</label>
+                        <input value="{{form.multi_headline_3.value}}" type="text" name="{{form.multi_headline_3.name}}" class="form-control" placeholder="12..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Phone</label>
+                        <input value="{{form.phone.value}}" type="text" name="{{form.phone.name}}" class="form-control" placeholder="#000">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Email</label>
+                        <input value="{{form.email.value}}" type="email" name="{{form.email.name}}" class="form-control" placeholder="#000">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Facebook</label>
+                        <input value="{{form.facebook.value}}" type="text" name="{{form.facebook.name}}" class="form-control" placeholder="#000">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Website</label>
+                        <input value="{{form.website.value}}" type="text" name="{{form.website.name}}" class="form-control" placeholder="cell.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Linkedin</label>
+                        <input value="{{form.linkedin.value}}" type="text" name="{{form.linkedin.name}}" class="form-control" placeholder="cell.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Spoken</label>
+                        <input value="{{form.spoken.value}}" type="text" name="{{form.spoken.name}}" class="form-control" placeholder="cell.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Nationality</label>
+                        <input value="{{form.nationality.value}}" type="text" name="{{form.nationality.name}}" class="form-control" placeholder="cell.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Location</label>
+                        <input value="{{form.location.value}}" type="text" name="{{form.location.name}}" class="form-control" placeholder="cell.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Interests</label>
+                        <input value="{{form.interests.value}}" type="text" name="{{form.interests.name}}" class="form-control" placeholder="cell.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Bio</label>
+                        <textarea rows="9" cols="70" form="test_form" type="text" name="{{form.bio.name}}" class="form-control" placeholder="Good.." />{{form.bio.value}} </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Date Of Birth</label>
+                        <input value="" required="" type="date" name="{{form.DOB.name}}" class="form-control" placeholder="2022-12-12">
+                    </div>
+                    <div class="form-group">
+                        <label>Attach Profile CV</label>
+                        <input type="file" value="{{form.upload_cv.value}}" class="file-upload-default" name="upload_cv" accept="image/*" id="id_upload_cv">
+                        <div class="input-group col-xs-12">
+                            <input type="text" value="{{form.upload_cv.value}}" class="form-control file-upload-info" disabled="" placeholder="CV..">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Update CV</button>
+                            </span>
+                        </div>
+                    </div>
+                    {% if boolean_check == True %}
+                    <div class="form-group">
+                        <label class="form-check-label" for="exampleCheck1">Remove Attach CV</label>
+                        <input type="checkbox" name="{{form.check_remove_cv.name}}" class="ml-2 form-check-input" id="exampleCheck1">
+                    </div>
+                    {% endif %}
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

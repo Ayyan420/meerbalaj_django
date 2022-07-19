@@ -1,0 +1,98 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-between align-items-start w-100">
+    <div class="col-md-5 grid-margin stretch-card">
+        <div class="card" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body">
+                <h4 class="card-title">Add Portfolio Images</h4>
+                <p class="card-description">
+                    Images will show in right side of my works section
+                </p>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Image Title</label>
+                        <input type="text" required="" name="{{form.name_project.name}}" class="form-control" placeholder="EIS..">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <div class="custom_select">
+                            {{form.category}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Attach Image</label>
+                        <input type="file" class="file-upload-default" name="item_img" accept="image/*" required="" id="id_item_img">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled="" placeholder="Image..">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Attach Image</button>
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7 grid-margin stretch-card">
+        <div class="card" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body">
+                <h4 class="card-title mb-5">Portfolio Images Table</h4>
+                {% if not portfolio_images_data %}
+                <h4 class="text-center card-title mb-5">No Images Found!</h4>
+                {% endif %}
+                {% if portfolio_images_data %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Image
+                                </th>
+                                <th class="text-center">
+                                    Title
+                                </th>
+                                <th class="text-center">
+                                    Category
+                                </th>
+                                <th class="text-center">
+                                    Delete Images
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for port in portfolio_images_data %}
+                            <tr>
+                                {% if port.item_img %}
+                                <td class="text-center">
+                                    <img src="{{port.item_img.url}}" width="200" height="200" />
+                                </td>
+                                {% endif %}
+                                {% if not port.item_img %}
+                                <td class="text-center">
+                                    No Preview Available
+                                </td>
+                                {% endif %}
+                                <td class="text-center py-1">
+                                    {{port.name_project}}
+                                </td>
+                                <td class="text-center py-1">
+                                    {{port.category}}
+                                </td>
+                                <td class="text-center">
+                                    <a href="{% url 'Del_port_images_entries' port.id %}">
+                                        <button type="button" class="btn btn-sm btn-inverse-danger">Delete</button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

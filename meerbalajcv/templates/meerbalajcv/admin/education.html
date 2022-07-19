@@ -1,0 +1,78 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-between align-items-start w-100">
+    <div class="p-0 col-sm-4 grid-margin stretch-card">
+        <div class="card p-0" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body pl-4 pr-4">
+                <h4 class="card-title">Add Education</h4>
+                <p class="card-description">
+                    education data will show below about me section
+                </p>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">From</label>
+                        <input type="date" required="" name="{{form.From.name}}" class="form-control" placeholder="2022-12-12..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">To</label>
+                        <input type="date" required="" name="{{form.To.name}}" class="form-control" placeholder="2021-12-12..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Learning Place</label>
+                        <input type="text" required="" name="{{form.learning_place.name}}" class="form-control" placeholder="School..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Degree</label>
+                        <input type="text" required="" name="{{form.degree.name}}" class="form-control" placeholder="Matriculation..">
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 m-0  grid-margin stretch-card">
+        <div class="card m-0 p-0 ml-4" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body m-0  pl-4 pr-4">
+                <h4 class="card-title mb-5">Education Data Table</h4>
+                {% if not education_data %}
+                <h4 class="text-center card-title mb-5">No Education Data Found!</h4>
+                {% endif %}
+                {% if education_data %}
+                <div class="table_custom_education table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class=" pl-0 pr-0 text-center">From</th>
+                                <th class=" pl-0 pr-0 text-center">To</th>
+                                <th class=" pl-0 pr-0 text-center">Degree</th>
+                                <th class=" pl-0 pr-0 text-center " style="width:40%">Learning Place</th>
+                                <th class=" pl-0 pr-0 text-center">E/D</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ed in education_data %}
+                            <tr>
+                                <td class="text-center"><label class="badge badge-info">{{ed.From}}</label></td>
+                                <td class="text-center"><label class="badge badge-success">{{ed.To}}</label></td>
+                                <td class="text-center text-danger">{{ed.degree}}</td>
+                                <td class="text-center text-primary">{{ed.learning_place}}</td>
+                                <td class="d-flex justify-content-between align-items-center text-center">
+                                    <a href="{% url 'Edit_educations_entries' ed.id %}">
+                                        <label style="cursor: pointer;" class="p-2 mr-2 badge badge-warning">Edit</label>
+                                    </a>
+                                    <a href="{% url 'Delete_educations_entries' ed.id %}">
+                                        <label style="cursor: pointer;" class="p-2 badge badge-danger">Delete</label>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-between align-items-start w-100">
+    <div class="p-0 col-sm-4 grid-margin stretch-card">
+        <div class="card p-0" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body pl-4 pr-4">
+                <h4 class="card-title">Add Experience</h4>
+                <p class="card-description">
+                    experience data will show below about me section
+                </p>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">From</label>
+                        <input type="date" required="" name="{{form.From.name}}" class="form-control" placeholder="2022-12-12..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">To</label>
+                        <input type="date" required="" name="{{form.To.name}}" class="form-control" placeholder="2021-12-12..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Company</label>
+                        <input type="text" required="" name="{{form.company.name}}" class="form-control" placeholder="Google..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Job Title</label>
+                        <input type="text" required="" name="{{form.job_title.name}}" class="form-control" placeholder="Web Deve..">
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 m-0  grid-margin stretch-card">
+        <div class="card m-0 p-0 ml-4" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body m-0  pl-4 pr-4">
+                <h4 class="card-title mb-5">Experience Data Table</h4>
+                {% if not experience_data %}
+                <h4 class="text-center card-title mb-5">No Experience Data Found!</h4>
+                {% endif %}
+                {% if experience_data %}
+                <div class="table_custom_experience table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class=" pl-0 pr-0 text-center">From</th>
+                                <th class=" pl-0 pr-0 text-center">To</th>
+                                <th class=" pl-0 pr-0 text-center">Company</th>
+                                <th class=" pl-0 pr-0 text-center " style="width:40%">Job Title</th>
+                                <th class=" pl-0 pr-0 text-center">E/D</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ex in experience_data %}
+                            <tr>
+                                <td class="text-center"><label class="badge badge-primary">{{ex.From}}</label></td>
+                                <td class="text-center"><label class="badge badge-warning   ">{{ex.To}}</label></td>
+                                <td class="text-center text-primary">{{ex.company}}</td>
+                                <td class="text-center text-info">{{ex.job_title}}</td>
+                                <td class="d-flex justify-content-between align-items-center text-center">
+                                    <a href="{% url 'Edit_experiences_entries' ex.id %}">
+                                        <label style="cursor: pointer;" class="p-2 mr-2 badge badge-success">Edit</label>
+                                    </a>
+                                    <a href="{% url 'Delete_experiences_entries' ex.id %}">
+                                        <label style="cursor: pointer;" class="p-2 badge badge-danger">Delete</label>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

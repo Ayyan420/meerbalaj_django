@@ -1,0 +1,70 @@
+{% extends "meerbalajcv/admin/index.html" %}
+{% block content %}
+{% load static %}
+<div class="row justify-content-between align-items-start w-100">
+    <div class="p-0 col-sm-4 grid-margin stretch-card">
+        <div class="card p-0" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body pl-4 pr-4">
+                <h4 class="card-title">Add Skill</h4>
+                <p class="card-description">
+                    skill data will show in right of education and experience section
+                </p>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Skill Name</label>
+                        <input type="text" required="" name="{{form.skill_name.name}}" class="form-control" placeholder="Odoo..">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Skill Count</label>
+                        <input type="text" required="" name="{{form.skill_count.name}}" class="form-control" placeholder="50">
+                    </div>
+                    <button type="submit" class="w-100 btn btn-primary mr-2">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 m-0  grid-margin stretch-card">
+        <div class="card m-0 p-0 ml-4" style="box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, .6);">
+            <div class="card-body m-0  pl-4 pr-4">
+                <h4 class="card-title mb-5">Skill Data Table</h4>
+                {% if not skill_data %}
+                <h4 class="text-center card-title mb-5">No Skill Data Found!</h4>
+                {% endif %}
+                {% if skill_data %}
+                <div class="table_custom_experience table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class=" pl-2 pr-0 text-left">Skill Name</th>
+                                <th class=" w-50 pl-2 pr-0 text-left">Skill Count</th>
+                                <th class=" pl-2 pr-0 text-left">Edit / Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sk in skill_data %}
+                            <tr>
+                                <td class="pl-2 text-left text-primary">{{sk.skill_name}}</td>
+                                <td class="pl-2 text-left">
+                                    <div class="progress" style="height:15px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{sk.skill_count}}%" aria-valuenow="{{sk.skill_count}}" aria-valuemin="0" aria-valuemax="100">{{sk.skill_count}}%</div>
+                                    </div>
+                                </td>
+                                <td class="pl-2 d-flex justify-content-evenly align-items-center text-center">
+                                    <a href="{% url 'Edit_skills_entries' sk.id %}">
+                                        <label style="cursor: pointer;" class="p-2 mr-2 badge badge-info">Edit</label>
+                                    </a>
+                                    <a href="{% url 'Delete_skills_entries' sk.id %}">
+                                        <label style="cursor: pointer;" class="p-2 badge badge-danger">Delete</label>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
